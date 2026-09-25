@@ -3,8 +3,18 @@ import Brand from './Brand'
 
 export default function SiteNav() {
     const [menuOpen, setMenuOpen] = useState(false)
+    const [isFullscreen, setIsFullscreen] = useState(false)
 
     const closeMenu = () => setMenuOpen(false)
+
+    const toggleFullscreen = async () => {
+        if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen?.()
+        } else {
+            await document.exitFullscreen?.()
+        }
+        setMenuOpen(false)
+    }
 
     useEffect(() => {
         if (!menuOpen) return undefined
@@ -22,6 +32,12 @@ export default function SiteNav() {
             document.removeEventListener('pointerdown', closeOnOutsidePointer)
         }
     }, [menuOpen])
+
+    useEffect(() => {
+        const updateFullscreenState = () => setIsFullscreen(Boolean(document.fullscreenElement))
+        document.addEventListener('fullscreenchange', updateFullscreenState)
+        return () => document.removeEventListener('fullscreenchange', updateFullscreenState)
+    }, [])
 
     return (
         <nav className={`site-nav${menuOpen ? ' menu-open' : ''}`} aria-label="Main navigation">
@@ -63,6 +79,15 @@ export default function SiteNav() {
                         03 <span>Contact</span><b>↘</b>
                     </a>
                 </div>
+                <button
+                    className="fullscreen-toggle"
+                    type="button"
+                    onClick={toggleFullscreen}
+                    hidden={!document.fullscreenEnabled}
+                >
+                    <span>{isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}</span>
+                    <b aria-hidden="true">{isFullscreen ? '↙' : '↗'}</b>
+                </button>
             </div>
         </nav>
     )

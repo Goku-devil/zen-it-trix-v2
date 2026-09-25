@@ -1334,6 +1334,28 @@ footer h2 {
         color: var(--pink);
     }
 
+    .fullscreen-toggle {
+        width: 100%;
+        margin-top: 22px;
+        padding: 12px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 0;
+        border-top: 1px solid rgba(95, 244, 230, .25);
+        background: transparent;
+        color: var(--cyan);
+        font: 10px 'DM Mono', monospace;
+        text-align: left;
+        text-transform: uppercase;
+    }
+
+    .fullscreen-toggle b {
+        color: var(--lime);
+        font-size: 18px;
+        font-weight: 400;
+    }
+
     .hero {
         grid-template-columns: 1fr;
         padding-top: 65px;
