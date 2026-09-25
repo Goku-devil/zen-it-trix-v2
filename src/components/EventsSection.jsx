@@ -54,6 +54,7 @@ export default function EventsSection({ technicalEvents, nonTechnicalEvents }) {
             </div>
             {isTechnical ? (
                 <Track
+                    key={activeTrack}
                     className="technical"
                     label="01 / Technical"
                     description="For the curious, the precise, and the ones who see a problem and think: I can fix that."
@@ -61,6 +62,7 @@ export default function EventsSection({ technicalEvents, nonTechnicalEvents }) {
                 />
             ) : (
                 <Track
+                    key={activeTrack}
                     className="non-technical"
                     label="02 / Non-technical"
                     description="For the loud laughs, friendly rivalries, and people who bring the fun wherever they go."

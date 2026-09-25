@@ -829,6 +829,22 @@ h2 em {
     margin-top: 55px;
 }
 
+.track-column {
+    animation: track-enter 360ms cubic-bezier(.2, .8, .2, 1) both;
+}
+
+@keyframes track-enter {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .track-heading {
     display: flex;
     justify-content: space-between;
@@ -863,6 +879,7 @@ h2 em {
 }
 
 .event-card {
+    --card-accent: var(--cyan);
     position: relative;
     min-height: 300px;
     padding: 21px;
@@ -870,18 +887,20 @@ h2 em {
     flex-direction: column;
     background: rgba(255, 255, 255, .045);
     border: 1px solid var(--line);
-    transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    -webkit-backdrop-filter: blur(12px) saturate(125%);
+    backdrop-filter: blur(12px) saturate(125%);
+    transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
 }
 
 .event-card:hover {
     transform: translateY(-8px) rotate(-1deg);
-    border-color: var(--cyan);
-    background: rgba(95, 244, 230, .08);
+    border-color: var(--card-accent);
+    background: color-mix(in srgb, var(--card-accent) 9%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--card-accent) 42%, transparent), 0 0 24px color-mix(in srgb, var(--card-accent) 28%, transparent), 0 0 58px color-mix(in srgb, var(--card-accent) 12%, transparent);
 }
 
 .event-card.coral:hover {
-    border-color: var(--pink);
-    background: rgba(255, 79, 154, .08);
+    --card-accent: var(--pink);
 }
 
 .event-topline {
@@ -1550,6 +1569,19 @@ footer h2 {
         padding-right: 20px;
     }
 
+    .events-section .section-heading {
+        margin-bottom: 40px;
+    }
+
+    .events-section .section-heading h2 {
+        font-size: clamp(36px, 11vw, 56px);
+        line-height: .9;
+    }
+
+    .events-section .event-toggle {
+        margin-top: 28px;
+    }
+
     .event-grid.two-column,
     .contact-panels {
         grid-template-columns: 1fr;
@@ -1588,7 +1620,10 @@ footer h2 {
     .site-nav::before,
     .site-nav::after,
     .mobile-navigation,
-    .hero-event-name strong {
+    .hero-event-name strong,
+    .track-column,
+    .event-card {
         animation: none !important;
+        transition: none !important;
     }
 }
