@@ -1192,6 +1192,10 @@ footer h2 {
 
 @media (max-width: 850px) {
 
+    .site-nav {
+        overflow: visible;
+    }
+
     .nav-links,
     .nav-cta {
         display: none;
@@ -1313,6 +1317,10 @@ footer h2 {
 @media (max-width: 560px) {
     .site-nav {
         height: 68px;
+    }
+
+    .mobile-navigation {
+        top: 68px;
     }
 
     .college-logo {
